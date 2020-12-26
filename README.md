@@ -1,4 +1,4 @@
-# ATOM THING
+# ATOM editor config
 
 after installing Atom, 
 git pull and put config.cson and package.list
