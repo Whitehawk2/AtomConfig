@@ -33,7 +33,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 :CocConfig
 ```
 and paste this into the config file:
-```
+```yaml
 {
 "yaml.schemas": {
       "kubernetes": "/*.yaml"
