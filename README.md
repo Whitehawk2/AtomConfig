@@ -41,9 +41,9 @@ and paste this into the config file:
 
 }
 ```
-    - to have yaml IDE-like autocorrections, the RH Yaml language server
-      **must** run in the background. 
-      I use docker:
+   to have yaml IDE-like autocorrections, the RH Yaml language server
+   **must** run in the background. 
+   I use docker:
 ```bash
 docker run --rm  -it quay.io/redhat-developer/yaml-language-server:latest
 ```
