@@ -1,6 +1,7 @@
 {
-  "yaml.schemas": {
-      "kubernetes": "/*.yaml"
-  }
+ "yaml.schemas": {
+       "kubernetes": "/*.yaml"
+   }
+ 
+ }
 
-}
