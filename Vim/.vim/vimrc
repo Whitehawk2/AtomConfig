@@ -1,0 +1,136 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Bundle 'Valloric/YouCompleteMe'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+" Plugin 'jnurmine/Zenburn'
+"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'martinda/Jenkinsfile-vim-syntax'    " Jenkinsfile linter
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-fugitive'
+Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'towolf/vim-helm'                   " Helm syntax
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} 
+" Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'ryanoasis/vim-devicons'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+let mapleader = ","
+
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+map <leader>c "+y
+map <leader>v "+p
+let g:SimpylFold_docstring_preview=1
+
+" Enable folding
+nnoremap <space> za
+
+" SET section
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+" set textwidth=79            " For Python PEP8, forced
+set colorcolumn=80            " Show border @ 80 chars, but don't force 
+set expandtab
+set autoindent
+set fileformat=unix
+set number                    " Show line number in gutter
+set relativenumber            " Relative line numbers to jump easier
+set wildmenu                  " Tab autocomplete in command mode
+set smarttab
+set splitright                " open new splits to the right 
+set splitbelow                " Open new splits to the bottom
+set encoding=utf-8
+set mouse=a
+set laststatus=2              " Show status bar on all windows
+set hlsearch                  " Highlight search term
+set incsearch                 " Show partial matches, good for regex
+set ignorecase                " Ignore case when searching
+set smartcase                 " Use case-based search ONLY if uppercase in query
+set scrolloff=8               " Keep 5 lines above and below cursor
+set noerrorbells              " Disable error chimes on errors
+set title                     " Set window title to file edited
+set autoread                  " Auto read if file is changed from outside
+set magic                     " For better regex
+set showmatch                 " Show matching brackets when cursor is on them
+
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"python with virtualenv support
+python3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+let python_highlight_all=1
+syntax on
+
+"if has('gui_running')
+" set background=dark
+ " colorscheme solarized
+"else
+ " colorscheme zenburn
+"endif
+
+call togglebg#map("<F5>")
+
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab 
+let g:indentLine_char = '⦙'
+let g:syntastic_python_checkers = ['flake8']
+
+" Delete trailing white space on save, useful for some filetypes
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.sh :call CleanExtraSpaces()
+endif
+
+" Clear highlights from search with <leader>C
+nnoremap <leader>C :let @/=""<CR>
+
+" Testing section - autopair brackets and quotation marks
+inoremap " ""<ESC>ha
+inoremap ( ()<ESC>ha
+inoremap [ []<ESC>ha
+inoremap { {}<ESC>ha
