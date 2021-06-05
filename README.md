@@ -1,12 +1,18 @@
 # dotfiles cofig repo
 
 Version 0.9 :octocat:
+
 Reorginized my dotfiles inside each dir so that it keeps
 the original directory structure as expected so that it could
 be directly symlinked to $HOME, or have gnu stow used.
 > for stow, use the parent folder as target!
 
 * i.e, for vim, use `stow Vim`, and not usual symlink target (`ln -sf Vim/.vim/ ~/`)
+
+TODO:
+* Update or deprecate atom
+* Go through and update zshrc!
+* vim/nvim plugins? map cleanups?
 
 ## Atom
 
@@ -77,4 +83,4 @@ and paste this into the config file:
 docker run --rm  -it quay.io/redhat-developer/yaml-language-server:latest
 ```
 
-### The dotfiles are not tidy yet, it on my TODO
+### Tidying the dotfiles themselves WILL BE DONE! eventually(tm)
