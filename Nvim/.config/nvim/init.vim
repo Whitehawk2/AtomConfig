@@ -49,6 +49,8 @@ set noerrorbells              " Disable error chimes on errors
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 let g:indentLine_char = '⦙'
 
+autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
 " Delete trailing white space on save, useful for some filetypes
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
@@ -65,8 +67,8 @@ endif
 " Clean trailing whitespace manually with <leader>c
 nnoremap <leader>c :call CleanExtraSpaces()<CR>
 
-" Clear highlights from search with <leader>C
-nnoremap <leader>C :let @/=""<CR>
+" Clear highlights from search with <leader><leader>
+nnoremap <leader><leader> :let @/=""<CR>
 
 " CoC Settings below to end
 " ---------------------------------------------------------------------

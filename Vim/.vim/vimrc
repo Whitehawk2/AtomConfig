@@ -22,7 +22,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'towolf/vim-helm'                   " Helm syntax
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} 
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 " Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'ryanoasis/vim-devicons'
 
@@ -59,7 +59,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 " set textwidth=79            " For Python PEP8, forced
-set colorcolumn=80            " Show border @ 80 chars, but don't force 
+set colorcolumn=80            " Show border @ 80 chars, but don't force
 highlight ColorColumn ctermbg=0 guibg=lightgrey  " Make the border grey
 set expandtab
 set autoindent
@@ -68,7 +68,7 @@ set number                    " Show line number in gutter
 set relativenumber            " Relative line numbers to jump easier
 set wildmenu                  " Tab autocomplete in command mode
 set smarttab
-set splitright                " open new splits to the right 
+set splitright                " open new splits to the right
 set splitbelow                " Open new splits to the bottom
 set encoding=utf-8
 set mouse=a
@@ -110,7 +110,7 @@ syntax on
 call togglebg#map("<F5>")
 
 
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 let g:indentLine_char = '⦙'
 let g:syntastic_python_checkers = ['flake8']
 
@@ -130,11 +130,29 @@ endif
 " Clear highlights manually with <leader>c
 nnoremap <leader>c :call CleanExtraSpaces()<CR>
 
-" Clear highlights from search with <leader>C
-nnoremap <leader>C :let @/=""<CR>
+" Clear highlights from search with <leader><leader>
+nnoremap <leader><leader> :let @/=""<CR>
 
 " Testing section - autopair brackets and quotation marks
 inoremap " ""<ESC>ha
 inoremap ( ()<ESC>ha
 inoremap [ []<ESC>ha
 inoremap { {}<ESC>ha
+
+" Open a terminal in a new tab with <leader>T, or sp with <leader>t
+map <leader>t :vert term ++close<cr><c-w>:vertical resize 50<cr>
+tmap <leader>t <c-w>:term ++close<cr>
+map <leader>T :tab term ++close<cr>
+tmap <leader>T <c-w>:tab term++close<cr>
+
+" terminal - enter command mode
+tmap <leader><leader> <c-w>:
+
+" terminal - enter 'normal mode'
+tmap <leader>n <c-w>N
+
+" terminal - navigate splits
+tmap <c-k> <c-w>k
+tmap <c-j> <c-w>j
+tmap <c-h> <c-w>h
+tmap <c-l> <c-w>l
