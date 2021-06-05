@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'ascenator/L9', {'name': 'newL9'}
 " Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'martinda/Jenkinsfile-vim-syntax'    " Jenkinsfile
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 " All of your Plugins must be added before the following line
@@ -20,12 +21,55 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 
+let mapleader = ","
+
+" Split panes navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-set mouse=a
+set splitright
+set splitbelow
 
+" SET section
+set mouse=a
+set expandtab
+set smarttab
+set autoindent
+set fileformat=unix
+set number                    " Show line number in gutter
+set relativenumber            " Relative line numbers to jump easier
+set encoding=utf-8
+set incsearch                 " Show partial matches, good for regex
+set ignorecase                " Ignore case when searching
+set smartcase                 " Use case-based search ONLY if uppercase in query
+set scrolloff=8               " Keep 5 lines above and below cursor
+set noerrorbells              " Disable error chimes on errors
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2
+let g:indentLine_char = '⦙'
+
+" Delete trailing white space on save, useful for some filetypes
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.sh :call CleanExtraSpaces()
+endif
+
+" Clean trailing whitespace manually with <leader>c
+nnoremap <leader>c :call CleanExtraSpaces()<CR>
+
+" Clear highlights from search with <leader>C
+nnoremap <leader>C :let @/=""<CR>
+
+" CoC Settings below to end
+" ---------------------------------------------------------------------
 " TextEdit might fail if hidden is not set.
 set hidden
 

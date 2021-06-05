@@ -127,6 +127,9 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.sh :call CleanExtraSpaces()
 endif
 
+" Clear highlights manually with <leader>c
+nnoremap <leader>c :call CleanExtraSpaces()<CR>
+
 " Clear highlights from search with <leader>C
 nnoremap <leader>C :let @/=""<CR>
 
