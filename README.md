@@ -9,30 +9,11 @@ be directly symlinked to $HOME, or have gnu stow used.
 
 * i.e, for vim, use `stow Vim`, and not usual symlink target (`ln -sf Vim/.vim/ ~/`)
 
-TODO:
+**TODO:**
+
 * Update or deprecate atom
 * Go through and update zshrc!
 * vim/nvim plugins? map cleanups?
-
-## Atom
-
-### NOT UPDATED
-
-after installing Atom,
-git pull and put config.cson and package.list
-into ~/.atom/ **OR USE SYMLINK**
-
-install all packages in the list
-
-```bash
-apm install --packages-file ~/.atom/package.list
-```
-
-to create a new list of packages, use
-
-```bash
-apm list --installed --bare > ~/.atom/package.list
-```
 
 ## Vim && Nvim
 
@@ -81,6 +62,26 @@ and paste this into the config file:
 
 ```bash
 docker run --rm  -it quay.io/redhat-developer/yaml-language-server:latest
+```
+
+## Atom
+
+### NOT UPDATED
+
+after installing Atom,
+git pull and put config.cson and package.list
+into ~/.atom/ **OR USE SYMLINK**
+
+install all packages in the list
+
+```bash
+apm install --packages-file ~/.atom/package.list
+```
+
+to create a new list of packages, use
+
+```bash
+apm list --installed --bare > ~/.atom/package.list
 ```
 
 ### Tidying the dotfiles themselves WILL BE DONE! eventually(tm)
