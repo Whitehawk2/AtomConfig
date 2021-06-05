@@ -60,6 +60,7 @@ set softtabstop=4
 set shiftwidth=4
 " set textwidth=79            " For Python PEP8, forced
 set colorcolumn=80            " Show border @ 80 chars, but don't force 
+highlight ColorColumn ctermbg=0 guibg=lightgrey  " Make the border grey
 set expandtab
 set autoindent
 set fileformat=unix
